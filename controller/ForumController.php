@@ -32,7 +32,7 @@
             return [
                 "view" => VIEW_DIR."forum/listCategories.php",
                 "data" => [
-                    "categories" => $categorieManager->findAll(["nom_categorie", "ASC"])
+                    "categories" => $categorieManager->findAll(["date_creation", "DESC"])
                 ]
             ];
         }

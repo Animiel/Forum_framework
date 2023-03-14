@@ -19,65 +19,83 @@ USE `forum_flo`;
 -- Listage de la structure de la table forum_flo. categorie
 CREATE TABLE IF NOT EXISTS `categorie` (
   `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_categorie` char(255) NOT NULL,
+  `nom_categorie` varchar(255) NOT NULL DEFAULT '',
+  `date_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_categorie`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_flo.categorie : ~0 rows (environ)
+-- Listage des données de la table forum_flo.categorie : ~3 rows (environ)
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
+INSERT INTO `categorie` (`id_categorie`, `nom_categorie`, `date_creation`) VALUES
+	(1, 'Informatique', '2023-03-14 16:19:20'),
+	(2, 'Animaux', '2023-03-14 16:19:21'),
+	(3, 'Cuisine', '2023-03-14 16:19:23');
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 
--- Listage de la structure de la table forum_flo. membre
-CREATE TABLE IF NOT EXISTS `membre` (
-  `id_membre` int(11) NOT NULL AUTO_INCREMENT,
-  `pseudo` char(50) NOT NULL,
-  `mot_de_passe` char(255) NOT NULL,
-  `role_membre` char(50) NOT NULL,
-  `email_membre` char(255) NOT NULL,
-  `date_inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_membre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Listage des données de la table forum_flo.membre : ~0 rows (environ)
-/*!40000 ALTER TABLE `membre` DISABLE KEYS */;
-/*!40000 ALTER TABLE `membre` ENABLE KEYS */;
-
--- Listage de la structure de la table forum_flo. message
-CREATE TABLE IF NOT EXISTS `message` (
-  `id_message` int(11) NOT NULL AUTO_INCREMENT,
-  `auteur_id` int(11) NOT NULL,
-  `sujet_id` int(11) NOT NULL,
+-- Listage de la structure de la table forum_flo. post
+CREATE TABLE IF NOT EXISTS `post` (
+  `id_post` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `topic_id` int(11) NOT NULL,
   `contenu` text NOT NULL,
   `date_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_message`),
-  KEY `auteur_id` (`auteur_id`),
-  KEY `sujet_id` (`sujet_id`),
-  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `membre` (`id_membre`),
-  CONSTRAINT `message_ibfk_2` FOREIGN KEY (`sujet_id`) REFERENCES `sujet` (`id_sujet`)
+  PRIMARY KEY (`id_post`),
+  KEY `auteur_id` (`user_id`),
+  KEY `sujet_id` (`topic_id`),
+  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
+  CONSTRAINT `post_ibfk_2` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_flo.message : ~0 rows (environ)
-/*!40000 ALTER TABLE `message` DISABLE KEYS */;
-/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+-- Listage des données de la table forum_flo.post : ~0 rows (environ)
+/*!40000 ALTER TABLE `post` DISABLE KEYS */;
+/*!40000 ALTER TABLE `post` ENABLE KEYS */;
 
--- Listage de la structure de la table forum_flo. sujet
-CREATE TABLE IF NOT EXISTS `sujet` (
-  `id_sujet` int(11) NOT NULL AUTO_INCREMENT,
-  `auteur_id` int(11) NOT NULL,
+-- Listage de la structure de la table forum_flo. topic
+CREATE TABLE IF NOT EXISTS `topic` (
+  `id_topic` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `categorie_id` int(11) NOT NULL,
-  `nom_sujet` char(255) NOT NULL,
-  `fermeture` tinyint(4) NOT NULL,
-  `date_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_sujet`),
-  KEY `auteur_id` (`auteur_id`),
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `closed` tinyint(4) NOT NULL,
+  `creationdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_topic`),
+  KEY `auteur_id` (`user_id`),
   KEY `categorie_id` (`categorie_id`),
-  CONSTRAINT `sujet_ibfk_1` FOREIGN KEY (`auteur_id`) REFERENCES `membre` (`id_membre`),
-  CONSTRAINT `sujet_ibfk_2` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id_categorie`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
+  CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id_categorie`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table forum_flo.sujet : ~0 rows (environ)
-/*!40000 ALTER TABLE `sujet` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sujet` ENABLE KEYS */;
+-- Listage des données de la table forum_flo.topic : ~8 rows (environ)
+/*!40000 ALTER TABLE `topic` DISABLE KEYS */;
+INSERT INTO `topic` (`id_topic`, `user_id`, `categorie_id`, `title`, `closed`, `creationdate`) VALUES
+	(1, 1, 1, 'Les requêtes SQL', 0, '2023-03-14 14:54:08'),
+	(2, 3, 1, 'Symfony mis à jour', 0, '2023-03-14 14:54:36'),
+	(3, 2, 2, 'Les reptiles', 0, '2023-03-14 14:54:56'),
+	(4, 3, 2, 'Portée de chiots', 1, '2023-03-14 14:55:30'),
+	(5, 2, 3, 'Recette de tarte flambée', 1, '2023-03-14 14:56:05'),
+	(6, 3, 3, 'Cuisson d\'une langue de boeuf', 1, '2023-03-14 14:56:34'),
+	(7, 1, 3, 'Carottes rapées ou crues', 1, '2023-03-14 14:56:58'),
+	(8, 1, 3, 'Entretenir son potager', 0, '2023-03-14 14:57:23');
+/*!40000 ALTER TABLE `topic` ENABLE KEYS */;
+
+-- Listage de la structure de la table forum_flo. user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(50) NOT NULL DEFAULT '',
+  `mot_de_passe` varchar(255) NOT NULL DEFAULT '',
+  `role_membre` varchar(50) NOT NULL DEFAULT '',
+  `email_membre` varchar(255) NOT NULL DEFAULT '',
+  `date_inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table forum_flo.user : ~2 rows (environ)
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`id_user`, `pseudo`, `mot_de_passe`, `role_membre`, `email_membre`, `date_inscription`) VALUES
+	(1, 'Test', 'test123', 'member', 'test@test.fr', '2023-03-14 14:46:25'),
+	(2, 'Animiel', 'animiel.9', 'admin', 'lol@gmail.com', '2023-03-14 14:50:04'),
+	(3, 'Fondu2fromage', 'camembert2', 'member', 'tome@brebris.chevre', '2023-03-14 14:51:21');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

@@ -1,16 +1,25 @@
 <?php
 
 $categories = $result["data"]['categories'];
-    
 ?>
 
-<h1>liste catégories</h1>
+<h1>Liste des catégories</h1>
 
-<?php
-foreach($categories as $categorie){
+<table>
+    <thead>
+        <tr>
+            <th>Nom de la catégorie</th>
+            <th>Date de création</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    ?>
-    <p><?=$categorie->getNom()?></p>
-    <?php
-}
+        <?php foreach($categories as $categorie) { ?>
+            <tr>
+                <td><a href="./view/forum/listTopics.php"><?=$categorie->getNom()?></a></td>
+                <td><?=$categorie->getDatecreation()?></td>
+            </tr>
+        <?php } ?>
 
+    </tbody>
+</table>
