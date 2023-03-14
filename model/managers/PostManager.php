@@ -8,7 +8,7 @@
     class PostManager extends Manager{
 
         protected $className = "Model\Entities\Post";
-        protected $tableName = "message";
+        protected $tableName = "post";
 
 
         public function __construct(){

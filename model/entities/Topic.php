@@ -8,7 +8,7 @@
         private $id;
         private $title;
         private $user;
-        private $creationdate;
+        private $creationdate;          //attention le nom doit être le même que dans la bdd
         private $closed;
         private $categorie;
 

@@ -6,9 +6,9 @@
     final class Post extends Entity {       //final = empêche de créer des classes filles -> si utilisé sur fonction, empêche redéfinition dans classe fille
         private $id;
         private $user;
-        private $sujet;
+        private $topic;
         private $contenu;
-        private $date;
+        private $date_creation;
 
         public function __construct($data) {         
             $this->hydrate($data);        

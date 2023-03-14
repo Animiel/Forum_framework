@@ -8,7 +8,7 @@
     class UserManager extends Manager{
 
         protected $className = "Model\Entities\User";
-        protected $tableName = "membre";
+        protected $tableName = "user";
 
 
         public function __construct(){

@@ -7,9 +7,9 @@
         private $id;
         private $pseudo;
         private $email;
-        private $mdp;
+        private $mot_de_passe;
         private $role;
-        private $inscription;
+        private $date_inscription;
 
         public function __construct($data){         
             $this->hydrate($data);        

@@ -4,15 +4,26 @@ $topics = $result["data"]['topics'];
     
 ?>
 
-<h1>liste topics</h1>
+<h1>Liste des sujets</h1>
 
-<?php
-foreach($topics as $topic ){
-
-    ?>
-    <p><?=$topic->getTitle()?></p>
-    <?php
-}
-
-
-  
+<table>
+    <thead>
+        <tr>
+            <th>Nom du sujet</th>
+            <th>Date de création</th>
+            <th>Auteur</th>
+            <th>Verrouillage</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <?php foreach($topics as $topic ) { ?>
+            <tr>
+                <td><a href="./view/forum/listPosts.php"><?=$topic->getTitle()?></a></td>
+                <td><?=$topic->getCreationdate()?></td>
+                <td><?=$topic->getUser()->getPseudo()?></td>
+                <td><?=$topic->getClosed()?></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>

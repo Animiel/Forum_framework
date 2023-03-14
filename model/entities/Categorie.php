@@ -3,7 +3,7 @@
 
     use App\Entity;
 
-    final class Post extends Entity {       //final = empêche de créer des classes filles -> si utilisé sur fonction, empêche redéfinition dans classe fille
+    final class Categorie extends Entity {       //final = empêche de créer des classes filles -> si utilisé sur fonction, empêche redéfinition dans classe fille
         private $id;
         private $nom;
 

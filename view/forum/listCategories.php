@@ -1,16 +1,16 @@
 <?php
 
-$topics = $result["data"]['categorie'];
+$categories = $result["data"]['categories'];
     
 ?>
 
 <h1>liste catégories</h1>
 
 <?php
-foreach($categories as $categorie ){
+foreach($categories as $categorie){
 
     ?>
-    <p><?=$categorie->getTitle()?></p>
+    <p><?=$categorie->getNom()?></p>
     <?php
 }
 

@@ -5,6 +5,7 @@
     use App\Session;
     use App\AbstractController;
     use App\ControllerInterface;
+    use Model\Managers\UserManager;
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
     use Model\Managers\CategorieManager;
@@ -15,11 +16,10 @@
           
 
            $topicManager = new TopicManager();
-
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
-                    "topics" => $topicManager->findAll(["date_creation", "DESC"])
+                    "topics" => $topicManager->findAll(["creationdate", "DESC"])       //"topics" = le nom envoyé dans affichage pour foreach par exemple
                 ]
             ];
         
@@ -32,7 +32,7 @@
             return [
                 "view" => VIEW_DIR."forum/listCategories.php",
                 "data" => [
-                    "categorie" => $categorieManager->findAll(["nom_categorie", "ASC"])
+                    "categories" => $categorieManager->findAll(["nom_categorie", "ASC"])
                 ]
             ];
         }
