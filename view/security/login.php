@@ -1,6 +1,6 @@
 <h1>Connexion</h1>
 
-<form>
+<form action="post">
     <p>
         <label>Identifiant :<br>
             <input type="email" name="email" required/>

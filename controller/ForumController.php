@@ -47,7 +47,7 @@
             ];
         }
 
-        public function listTopics() {
+        public function listTopiCat() {
 
             $TopicManager = new TopicManager();
             return [
@@ -55,6 +55,37 @@
                 "data" => [
                     "topics" => $TopicManager->findTopicById($_GET['id'])
                 ],
+            ];
+        }
+
+        public function ajoutTopic() {
+            if (isset($_POST['submit'])) {
+                if (isset($_GET['id'])) {
+                    $categorie_id = $_GET['id'];
+                    $title = filter_input(INPUT_POST, "nom_topic", FILTER_SANITIZE_SPECIAL_CHARS);
+                    $contenu = filter_input(INPUT_POST, "contenu", FILTER_SANITIZE_SPECIAL_CHARS);
+                    
+                    $topicManager = new TopicManager();
+                    
+                    $topicManager->add([
+                        "user_id" => 1,
+                        "categorie_id" => $categorie_id,
+                        "title" => $title,
+                    ]);
+
+                    $postManager = new PostManager();
+
+                    $postManager->add([
+                        "user_id" => 1,
+                        "topic_id" => "", //lastInsertId()
+                        "contenu" => $contenu
+                    ]);
+                }
+                $this->redirectTo("LEININGER_florian", "Forum_framework", "index");
+            }
+            //on redirige vers la page s'il y a un problème
+            return [
+                "view" => VIEW_DIR."forum/ajoutTopic.php",
             ];
         }
     }
