@@ -14,9 +14,4 @@
         public function __construct(){
             parent::connect();
         }
-
-        public function test(){
-           $this->getOneOrNullResult(DAO::select("select date_creation FROM categorie", false), $this->tableName);
-
-        }
     }

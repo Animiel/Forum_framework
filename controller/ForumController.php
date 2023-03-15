@@ -35,4 +35,15 @@
                 ],
             ];
         }
+
+        public function listPosts() {
+
+            $postManager = new PostManager();
+            return [
+                "view" => VIEW_DIR."forum/listPosts.php",
+                "data" => [
+                    "posts" => $postManager->findPostById($_GET['id'])
+                ],
+            ];
+        }
     }

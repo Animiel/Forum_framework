@@ -1,7 +1,6 @@
 <?php
 
 $topics = $result["data"]['topics'];
-    
 ?>
 
 <h1>Liste des sujets</h1>
@@ -19,7 +18,7 @@ $topics = $result["data"]['topics'];
         
         <?php foreach($topics as $topic ) { ?>
             <tr>
-                <td><a href="./view/forum/listPosts.php"><?=$topic->getTitle()?></a></td>
+                <td><a href="index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>"><?=$topic->getTitle()?></a></td>
                 <td><?=$topic->getCreationdate()?></td>
                 <td><?=$topic->getUser()->getPseudo()?></td>
                 <td><?=$topic->getClosed()?></td>

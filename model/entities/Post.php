@@ -34,11 +34,11 @@
         }
 
         public function getSujet() {
-            return $this->sujet;
+            return $this->topic;
         }
 
         public function setSujet($sujet) {
-            $this->sujet = $sujet;
+            $this->topic = $sujet;
             return $this;
         }
 
@@ -52,7 +52,7 @@
         }
 
         public function getDate() {
-            return $this->date_creation->format("d/m/Y, H:i:s");
+            return $this->date_creation->format("d/m/Y, H:i:s");        //Attention le fichier Entity supprime ce qu'il y a après "_" => dans bdd 'date_creation' doit être 'date'
         }
 
         public function setDate($date) {
