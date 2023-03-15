@@ -46,4 +46,15 @@
                 ],
             ];
         }
+
+        public function listTopics() {
+
+            $TopicManager = new TopicManager();
+            return [
+                "view" => VIEW_DIR."forum/listTopics.php",
+                "data" => [
+                    "topics" => $TopicManager->findTopicById($_GET['id'])
+                ],
+            ];
+        }
     }

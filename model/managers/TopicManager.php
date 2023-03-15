@@ -14,4 +14,15 @@
         public function __construct(){
             parent::connect();
         }
+
+        public function findTopicById($id) {
+            $sql = "SELECT *
+                    FROM ".$this->tableName." c
+                    WHERE c.categorie_id = :id";
+
+            return $this->getMultipleResults(
+                DAO::select($sql, ['id' => $id]),
+                $this->className
+            );
+        }
     }

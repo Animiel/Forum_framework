@@ -15,7 +15,7 @@ $categories = $result["data"]['categories'];
     <tbody>
         <?php foreach ($categories as $categorie) { ?>
             <tr>
-                <td><a href="./view/forum/listTopics.php"><?= $categorie->getNom() ?></a></td>
+                <td><a href="index.php?ctrl=forum&action=listTopics&id=<?= $categorie->getId() ?>"><?= $categorie->getNom() ?></a></td>
                 <td><?= $categorie->getDate() ?></td>
             </tr>
         <?php } ?>
