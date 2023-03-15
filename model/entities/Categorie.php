@@ -30,11 +30,11 @@
             return $this;
         }
 
-        public function getDatecreation(){
-            return $this->date_creation->format("d/m/Y, H:i:s");
+        public function getDate() {
+            return $this->date_creation->format("d/m/Y H:i:s");
         }
 
-        public function setDatecreation($date){
+        public function setDate($date) {
             $this->date_creation = new \DateTime($date);
             return $this;
         }

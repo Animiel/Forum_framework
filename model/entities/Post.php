@@ -9,6 +9,7 @@
         private $topic;
         private $contenu;
         private $date_creation;
+      
 
         public function __construct($data) {         
             $this->hydrate($data);        
@@ -51,11 +52,11 @@
         }
 
         public function getDate() {
-            return $this->date->format("d/m/Y, H:i:s");
+            return $this->date_creation->format("d/m/Y, H:i:s");
         }
 
         public function setDate($date) {
-            $this->date = new \DateTime($date);
+            $this->date_creation = new \DateTime($date);
             return $this;
         }
     }

@@ -28,15 +28,11 @@
         public function listCategories() {
 
             $categorieManager = new CategorieManager();
-
             return [
                 "view" => VIEW_DIR."forum/listCategories.php",
                 "data" => [
-                    "categories" => $categorieManager->findAll(["date_creation", "DESC"])
-                ]
+                    "categories" => $categorieManager->findAll(["date", "DESC"])
+                ],
             ];
         }
-
-        
-
     }

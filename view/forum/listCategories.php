@@ -13,11 +13,10 @@ $categories = $result["data"]['categories'];
         </tr>
     </thead>
     <tbody>
-
-        <?php foreach($categories as $categorie) { ?>
+        <?php foreach ($categories as $categorie) { ?>
             <tr>
-                <td><a href="./view/forum/listTopics.php"><?=$categorie->getNom()?></a></td>
-                <td><?=$categorie->getDatecreation()?></td>
+                <td><a href="./view/forum/listTopics.php"><?= $categorie->getNom() ?></a></td>
+                <td><?= $categorie->getDate() ?></td>
             </tr>
         <?php } ?>
 
