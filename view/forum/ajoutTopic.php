@@ -15,7 +15,7 @@
 
     <p>
         <label>
-            <input type="Submit" name="submit" value="Créer sujet">
+            <input type="submit" name="submit" value="Créer sujet">
         </label>
     </p>
 </form>
