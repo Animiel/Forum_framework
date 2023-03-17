@@ -66,22 +66,22 @@
                     $contenu = filter_input(INPUT_POST, "contenu", FILTER_SANITIZE_SPECIAL_CHARS);
                     
                     $topicManager = new TopicManager();
-                    
-                    $topicManager->add([
+                    $data = [
                         "user_id" => 1,
                         "categorie_id" => $categorie_id,
                         "title" => $title,
-                    ]);
+                    ];
+                    $lastId = $topicManager->add($data);
 
                     $postManager = new PostManager();
 
                     $postManager->add([
                         "user_id" => 1,
-                        "topic_id" => "", //lastInsertId()
+                        "topic_id" => $lastId,
                         "contenu" => $contenu
                     ]);
                 }
-                $this->redirectTo("LEININGER_florian", "Forum_framework", "index");
+                $this->redirectTo("florian_LEININGER", "Forum_framework", "index");
             }
             //on redirige vers la page s'il y a un problème
             return [
