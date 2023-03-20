@@ -27,7 +27,7 @@ $topics = $result["data"]['topics'];
                 <td><a href="index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>"><?=$topic->getTitle()?></a></td>
                 <td><?=$topic->getCreationdate()?></td>
                 <td><?=$topic->getUser()->getPseudo()?></td>
-                <td><?=$topic->getClosed()?></td>
+                <td><?=$topic->getClosedText()?></td>
             </tr>
         <?php } ?>
     </tbody>

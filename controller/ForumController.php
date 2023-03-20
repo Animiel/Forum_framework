@@ -36,13 +36,15 @@
             ];
         }
 
-        public function listPosts() {
+        public function listPosts($id) {
 
+            $topicManager = new TopicManager();
             $postManager = new PostManager();
             return [
                 "view" => VIEW_DIR."forum/listPosts.php",
                 "data" => [
-                    "posts" => $postManager->findPostById($_GET['id'])
+                    "topic" => $topicManager->findOneById($id),
+                    "posts" => $postManager->findPostById($id)
                 ],
             ];
         }

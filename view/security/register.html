@@ -1,6 +1,12 @@
 <h1>Inscription</h1>
 
-<form action="post">
+<form action="index.php?ctrl=security&action=inscription" method="POST">
+    <p>
+        <label>Pseudonyme :<br>
+            <input type="text" name="pseudo" required/>
+        </label>
+    </p>
+
     <p>
         <label>E-mail :<br>
             <input type="email" name="email" required/>
@@ -16,12 +22,6 @@
     <p>
         <label>Confirmation du mot de passe :<br>
             <input type="password" name="mdp_confirm" required/>
-        </label>
-    </p>
-
-    <p>
-        <label>Pseudonyme :<br>
-            <input type="text" name="pseudo" required/>
         </label>
     </p>
 

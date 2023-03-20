@@ -5,10 +5,6 @@
     use App\Session;
     use App\AbstractController;
     use App\ControllerInterface;
-    use Model\Managers\UserManager;
-    use Model\Managers\TopicManager;
-    use Model\Managers\PostManager;
-    use Model\Managers\CategorieManager;
 
     class SecurityController extends AbstractController implements ControllerInterface {
         
@@ -21,8 +17,12 @@
                 $mdpConf = filter_input(INPUT_POST, "mdp_confirm", FILTER_SANITIZE_SPECIAL_CHARS);
                 $pseudo = filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_SPECIAL_CHARS);
 
-                if ($email && ($mdp && length($mdp) >= 8 && $mdp === $mdpConf) && $pseudo) {
+                if ($email && ($mdp && strlen($mdp) >= 8 && $mdp === $mdpConf) && $pseudo) {
                     
+                    ["mot_de_passe" => password_hash($mdp, PASSWORD_DEFAULT),
+                    "pseudo" => $pseudo,
+                    "email" => $email];
+
                 }
             }
         }

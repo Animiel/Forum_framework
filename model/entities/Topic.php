@@ -91,7 +91,18 @@
          */ 
         public function getClosed()
         {
-                return $this->closed;
+             return $this->closed;
+        }
+
+        public function getClosedText() {
+                $result = "";
+                if ($this->closed == 0){
+                        $result = "Ouvert";
+                }
+                else {
+                        $result = "Fermé";
+                }
+                return $result;
         }
 
         /**
