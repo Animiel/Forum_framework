@@ -96,20 +96,6 @@
             });
         })
 
-        
-
-        /*
-        $("#ajaxbtn").on("click", function(){
-            $.get(
-                "index.php?action=ajax",
-                {
-                    nb : $("#nbajax").text()
-                },
-                function(result){
-                    $("#nbajax").html(result)
-                }
-            )
-        })*/
     </script>
 </body>
 </html>

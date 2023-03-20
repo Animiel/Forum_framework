@@ -1,6 +1,6 @@
 <h1>Création d'un nouveau message</h1>
 
-<form action="index.php?ctrl=forum&action=ajoutPost" method="POST">
+<form action="index.php?ctrl=forum&action=ajoutPost&id=<?= $id ?>" method="POST">
     <p>
         <label>Votre message :<br>
             <textarea name="contenu" row="10" cols="55"></textarea>

@@ -83,7 +83,7 @@
                 }
                 $this->redirectTo("florian_LEININGER", "Forum_framework", "index");
             }
-            //on redirige vers la page s'il y a un problème
+            //on redirige vers la page
             return [
                 "view" => VIEW_DIR."forum/ajoutTopic.php",
             ];
@@ -91,12 +91,12 @@
 
         public function ajoutPost() {
             if (isset($_POST['submit'])) {
-                // var_dump($_POST); die;
                 if (isset($_GET['id'])) {
-                    $topicId = $_GET(['$id']);
+                    $topicId = $_GET['id'];
                     $contenu = filter_input(INPUT_POST, "contenu", FILTER_SANITIZE_SPECIAL_CHARS);
 
                     $postManager = new PostManager();
+
                     $postManager->add([
                         "user_id" => 1,
                         "topic_id" => $topicId,
@@ -105,6 +105,7 @@
                 }
                 $this->redirectTo("florian_LEININGER", "Forum_framework", "index");
             }
+            //on redirige vers la page
             return [
                 "view" => VIEW_DIR."forum/ajoutPost.php",
             ];

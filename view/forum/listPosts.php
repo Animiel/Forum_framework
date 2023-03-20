@@ -12,7 +12,7 @@ $posts = $result["data"]['posts'];
 <?php } ?>
 
 <?php foreach ($posts as $post) { ?>
-    <label class="message"><?= $post->getUser()->getPseudo() ?> <?= $post->getDate() ?>
+    <label class="msg"><?= $post->getUser()->getPseudo() ?> <?= $post->getDate() ?>
         <p>
             <?= $post->getContenu() ?>
         </p>
