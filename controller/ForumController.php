@@ -83,7 +83,7 @@
                         "contenu" => $contenu
                     ]);
                 }
-                $this->redirectTo("florian_LEININGER", "Forum_framework", "index");
+                $this->redirectTo("forum", "listPosts", $lastId);
             }
             //on redirige vers la page
             return [
@@ -105,7 +105,7 @@
                         "contenu" => $contenu
                     ]);
                 }
-                $this->redirectTo("florian_LEININGER", "Forum_framework", "index");
+                $this->redirectTo("forum", "listPosts", $topicId);
             }
             //on redirige vers la page
             return [

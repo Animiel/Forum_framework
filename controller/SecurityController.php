@@ -42,7 +42,31 @@
                     $message = "Email déjà utilisé.";
                 }
             }
+            $this->redirectTo("security", "connexion");
             echo $message;
-            $this->redirectTo("florian_LEININGER", "Forum_framework", "index");
+        }
+
+        public function connexion() {
+            $message = "";
+            $userManager = new UserManager();
+
+            if (isset($_POST['submit'])) {
+                $identifiant = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+                $mdp = filter_input(INPUT_POST, "mdp", FILTER_SANITIZE_SPECIAL_CHARS);
+                $hash = $userManager->passwordHash($identifiant);
+                // var_dump(password_verify($mdp, $hash["mot_de_passe"]));die;
+                if ($identifiant && !$userManager->emailCheck($identifiant) == null) {
+                    if ($mdp && password_verify($mdp, $hash["mot_de_passe"])) {
+                       // var_dump($userManager->findUserByEmail($identifiant));die;
+                        Session::setUser($userManager->findUserByEmail($identifiant));
+                        $message = "La connexion a réussi. Bienvenue.";
+                    }
+                }
+                else {
+                    $message = "Informations invalides.";
+                }
+            }
+            $this->redirectTo("home");
+            echo $message;
         }
     }

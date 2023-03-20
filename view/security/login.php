@@ -1,15 +1,15 @@
 <h1>Connexion</h1>
 
-<form action="post">
+<form action="../../index.php?ctrl=security&action=connexion" method="POST">
     <p>
         <label>Identifiant :<br>
-            <input type="email" name="email" required/>
+            <input type="email" name="email" value="test2@test.fr" required/>
         </label>
     </p>
 
     <p>
         <label>Mot de passe :<br>
-            <input type="text" name="mdp" required/>
+            <input type="password" name="mdp" value="testtest" required/>
         </label>
     </p>
 
