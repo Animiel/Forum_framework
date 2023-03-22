@@ -117,4 +117,13 @@
                 "view" => VIEW_DIR."forum/ajoutPost.php",
             ];
         }
+
+        public function closeTopic() {
+            $topicManager = new TopicManager();
+            
+            $topic = $topicManager->findOneById($_GET['id']);
+            $topicManager->closeTopic($_GET['id']);
+
+            $this->redirectTo('forum', 'listCategories');
+        }
     }
