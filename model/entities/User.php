@@ -9,7 +9,7 @@
         private $email;
         private $mot_de_passe;
         private $role;
-        private $date_inscription;
+        private $registerdate;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -42,30 +42,12 @@
             return $this;
         }
 
-        public function getMdp() {
-            return $this->mdp;
-        }
-
-        public function setMdp($mdp) {
-            $this->mdp = $mdp;
-            return $this;
-        }
-
         public function getRole() {
             return $this->role;
         }
 
         public function setRole($role) {
             $this->role = $role;
-            return $this;
-        }
-
-        public function getInscription() {
-            return $this->inscription->format("d/m/Y");
-        }
-
-        public function setInscription($inscription) {
-            $this->inscription = new \DateTime($inscription);
             return $this;
         }
 
@@ -82,5 +64,45 @@
         public function __toString()
         {
             return $this->pseudo;
+        }
+
+        /**
+         * Get the value of mot_de_passe
+         */ 
+        public function getMot_de_passe()
+        {
+                return $this->mot_de_passe;
+        }
+
+        /**
+         * Set the value of mot_de_passe
+         *
+         * @return  self
+         */ 
+        public function setMot_de_passe($mot_de_passe)
+        {
+                $this->mot_de_passe = $mot_de_passe;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of registerdate
+         */ 
+        public function getRegisterdate()
+        {
+                return $this->registerdate->format("d/m/Y");
+        }
+
+        /**
+         * Set the value of registerdate
+         *
+         * @return  self
+         */ 
+        public function setRegisterdate($registerdate)
+        {
+                $this->registerdate = new \DateTime($registerdate);
+
+                return $this;
         }
     }

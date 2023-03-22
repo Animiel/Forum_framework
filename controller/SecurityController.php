@@ -78,4 +78,18 @@
             $message = "Vous vous êtes déconnecté.";
             $this->redirectTo(("home"));
         }
+
+        public function viewProfile() {
+            if (isset($_GET['id'])) {
+                $userManager = new UserManager();
+                // var_dump($userManager->findOneById($_GET['id'])); die;
+                return [
+                    "view" => VIEW_DIR."security/viewProfile.php",
+                    "data" => [
+                        "profile" => $userManager->findOneById($_GET['id'])
+                    ],
+                ];
+            }
+            $this->redirectTo("home");
+        }
     }

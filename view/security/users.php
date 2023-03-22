@@ -1,6 +1,6 @@
 <?php
 $users = $result["data"]['users'];
-
+// var_dump($users); die;
 ?>
 
 <h2>Liste des utilisateurs</h2>
