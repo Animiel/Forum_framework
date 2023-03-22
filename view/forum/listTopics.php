@@ -5,7 +5,7 @@ $topics = $result["data"]['topics'];
 
 <h1>Liste des sujets</h1>
 
-<?php if ($_GET['action'] == "listTopiCat") { ?>
+<?php if ($_GET['action'] == "listTopiCat" && isset($_SESSION['user'])) { ?>
     <p>
         <a class="ajout" href="index.php?ctrl=forum&action=ajoutTopic&id=<?= $id ?>">Ajouter un topic</a>
     </p>
