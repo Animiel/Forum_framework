@@ -63,25 +63,27 @@
         public function ajoutTopic() {
             if (isset($_POST['submit'])) {
                 if (isset($_GET['id'])) {
-                    $categorie_id = $_GET['id'];
-                    $title = filter_input(INPUT_POST, "nom_topic", FILTER_SANITIZE_SPECIAL_CHARS);
-                    $contenu = filter_input(INPUT_POST, "contenu", FILTER_SANITIZE_SPECIAL_CHARS);
-                    
-                    $topicManager = new TopicManager();
-                    $data = [
-                        "user_id" => 1,
-                        "categorie_id" => $categorie_id,
-                        "title" => $title,
-                    ];
-                    $lastId = $topicManager->add($data);
-
-                    $postManager = new PostManager();
-
-                    $postManager->add([
-                        "user_id" => 1,
-                        "topic_id" => $lastId,
-                        "contenu" => $contenu
-                    ]);
+                    if (isset($_SESSION['user'])) {
+                        $categorie_id = $_GET['id'];
+                        $title = filter_input(INPUT_POST, "nom_topic", FILTER_SANITIZE_SPECIAL_CHARS);
+                        $contenu = filter_input(INPUT_POST, "contenu", FILTER_SANITIZE_SPECIAL_CHARS);
+                        
+                        $topicManager = new TopicManager();
+                        $data = [
+                            "user_id" => $_SESSION['user']->getId(),
+                            "categorie_id" => $categorie_id,
+                            "title" => $title,
+                        ];
+                        $lastId = $topicManager->add($data);
+    
+                        $postManager = new PostManager();
+    
+                        $postManager->add([
+                            "user_id" => $_SESSION['user']->getId(),
+                            "topic_id" => $lastId,
+                            "contenu" => $contenu
+                        ]);
+                    }
                 }
                 $this->redirectTo("forum", "listPosts", $lastId);
             }
@@ -94,16 +96,19 @@
         public function ajoutPost() {
             if (isset($_POST['submit'])) {
                 if (isset($_GET['id'])) {
-                    $topicId = $_GET['id'];
-                    $contenu = filter_input(INPUT_POST, "contenu", FILTER_SANITIZE_SPECIAL_CHARS);
-
-                    $postManager = new PostManager();
-
-                    $postManager->add([
-                        "user_id" => 1,
-                        "topic_id" => $topicId,
-                        "contenu" => $contenu
-                    ]);
+                    if (isset($_SESSION['user'])) {
+                        $userId = $_SESSION['user']->getId();
+                        $topicId = $_GET['id'];
+                        $contenu = filter_input(INPUT_POST, "contenu", FILTER_SANITIZE_SPECIAL_CHARS);
+    
+                        $postManager = new PostManager();
+    
+                        $postManager->add([
+                            "user_id" => $userId,
+                            "topic_id" => $topicId,
+                            "contenu" => $contenu
+                        ]);
+                    }
                 }
                 $this->redirectTo("forum", "listPosts", $topicId);
             }
