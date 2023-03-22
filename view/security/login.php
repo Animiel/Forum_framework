@@ -3,13 +3,13 @@
 <form action="../../index.php?ctrl=security&action=connexion" method="POST">
     <p>
         <label>Identifiant :<br>
-            <input type="email" name="email" value="test2@test.fr" required/>
+            <input type="email" name="email" value="" required/>
         </label>
     </p>
 
     <p>
         <label>Mot de passe :<br>
-            <input type="password" name="mdp" value="testtest" required/>
+            <input type="password" name="mdp" value="" required/>
         </label>
     </p>
 

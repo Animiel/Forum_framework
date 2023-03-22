@@ -69,4 +69,13 @@
             $this->redirectTo("home");
             echo $message;
         }
+
+        public function logout() {
+            $message = "";
+            if (isset($_SESSION['user'])) {
+                Session::setUser(null);
+            }
+            $message = "Vous vous êtes déconnecté.";
+            $this->redirectTo(("home"));
+        }
     }
