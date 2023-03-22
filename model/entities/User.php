@@ -69,6 +69,16 @@
             return $this;
         }
 
+        public function hasRole($role) {
+            if ($this->role == $role) {
+                $bool = true;
+            }
+            else {
+                $bool = false;
+            }
+            return $bool;
+        }
+
         public function __toString()
         {
             return $this->pseudo;
