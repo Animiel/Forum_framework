@@ -83,8 +83,10 @@
                             "topic_id" => $lastId,
                             "contenu" => $contenu
                         ]);
+                        Session::addFlash("success", "Vous avez ajouté un nouveau sujet.");
                     }
                 }
+                Session::addFlash("error", "Une erreur est survenue");
                 $this->redirectTo("forum", "listPosts", $lastId);
             }
             //on redirige vers la page
@@ -108,8 +110,10 @@
                             "topic_id" => $topicId,
                             "contenu" => $contenu
                         ]);
+                        Session::addFlash("success", "Vous avez ajouté un nouveau message.");
                     }
                 }
+                Session::addFlash("error", "Une erreur est survenue.");
                 $this->redirectTo("forum", "listPosts", $topicId);
             }
             //on redirige vers la page
@@ -124,6 +128,7 @@
             $topic = $topicManager->findOneById($_GET['id']);
             $topicManager->closeTopic($_GET['id']);
 
+            Session::addFlash("success", "Vous avez fermé le sujet.");
             $this->redirectTo('forum', 'listCategories');
         }
     }

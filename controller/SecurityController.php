@@ -12,7 +12,6 @@
         public function index() {}
 
         public function inscription() {
-            $message = "";
             $userManager = new UserManager();
             if (isset($_POST['submit'])) {
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
@@ -28,26 +27,24 @@
                                 "email_membre" => $email
                             ];
                             $userManager->add($data);
-                            $message = "Utilisateur ajouté.";
+                            Session::addFlash("success", "Utilisateur ajouté.");
                         }
                         else {
-                            $message = "Mot de passe invalide.";
+                            Session::addFlash("error", "Mot de passe invalide.");
                         }
                     }
                     else {
-                        $message = "Pseudo déjà utilisé.";
+                        Session::addFlash("error", "Pseudo déjà utilisé.");
                     }
                 }
                 else {
-                    $message = "Email déjà utilisé.";
+                    Session::addFlash("error", "Email déjà utilisé.");
                 }
             }
             $this->redirectTo("security", "connexion");
-            echo $message;
         }
 
         public function connexion() {
-            $message = "";
             $userManager = new UserManager();
 
             if (isset($_POST['submit'])) {
@@ -59,23 +56,21 @@
                     if ($mdp && password_verify($mdp, $hash["mot_de_passe"])) {
                        // var_dump($userManager->findUserByEmail($identifiant));die;
                         Session::setUser($userManager->findUserByEmail($identifiant));
-                        $message = "La connexion a réussi. Bienvenue.";
+                        Session::addFlash("success", "La connexion a réussi. Bienvenue.");
                     }
                 }
                 else {
-                    $message = "Informations invalides.";
+                    Session::addFlash("error", "Informations invalides.");
                 }
             }
             $this->redirectTo("home");
-            echo $message;
         }
 
         public function logout() {
-            $message = "";
             if (isset($_SESSION['user'])) {
                 Session::setUser(null);
             }
-            $message = "Vous vous êtes déconnecté.";
+            Session::addFlash("success", "Vous vous êtes déconnecté.");
             $this->redirectTo(("home"));
         }
 
