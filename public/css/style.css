@@ -1,0 +1,57 @@
+body {
+    background-color: rgb(210, 234, 255);
+}
+
+nav {
+    display: flex;
+    flex-direction: row-reverse;
+    line-height: 3em;
+    width: 100vw;
+    background-color: rgb(176, 176, 255);
+}
+
+#nav-left, #nav-right {
+    display: inline;
+}
+
+nav a {
+    padding-right: 15px;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(0, 0, 206);
+}
+
+h1 {
+    text-align: center;
+    margin: 100px 0px;
+}
+
+table {
+    width: 100vw;
+    border-collapse: collapse;
+}
+
+table a {
+    color: black;
+    text-decoration: none;
+}
+
+th {
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgb(0, 0, 135);
+}
+
+td {
+    padding-top: 10px;
+    text-align: center;
+    line-height: 2em;
+    border-bottom: 1px solid rgb(176, 176, 255);
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+}
