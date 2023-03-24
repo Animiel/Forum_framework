@@ -62,4 +62,14 @@
             return DAO::update($sql, [":id" => $id]);
         }
 
+        public function checkBanned($email) {
+            $sql = "SELECT banned
+                    FROM ".$this->tableName." u
+                    WHERE u.email_membre = :email";
+
+            return $this->getOneOrNullResult(
+                DAO::select($sql, [":email" => $email], false),
+                $this->className);
+        }
+
     }

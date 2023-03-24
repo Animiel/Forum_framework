@@ -54,9 +54,16 @@
                 // var_dump(password_verify($mdp, $hash["mot_de_passe"]));die;
                 if ($identifiant && !$userManager->emailCheck($identifiant) == null) {
                     if ($mdp && password_verify($mdp, $hash["mot_de_passe"])) {
-                       // var_dump($userManager->findUserByEmail($identifiant));die;
-                        Session::setUser($userManager->findUserByEmail($identifiant));
-                        Session::addFlash("success", "La connexion a réussi. Bienvenue.");
+                        if ($userManager->checkBanned($identifiant) == 1) {
+                            Session::setUser(null);
+                            Session::addFlash("error", "Vous êtes banni, connexion impossible.");
+                            $this->redirectTo("home");
+                        }
+                        else {
+                            // var_dump($userManager->findUserByEmail($identifiant));die;
+                             Session::setUser($userManager->findUserByEmail($identifiant));
+                             Session::addFlash("success", "La connexion a réussi. Bienvenue.");
+                        }
                     }
                 }
                 else {
