@@ -26,7 +26,7 @@
             $this->restrictTo("ROLE_ADMIN");
 
             $manager = new UserManager();
-            $users = $manager->findAll(['registerdate', 'DESC']);
+            $users = $manager->findAll(['pseudo', 'ASC']);
 
             return [
                 "view" => VIEW_DIR."security/users.php",

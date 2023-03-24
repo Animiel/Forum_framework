@@ -4,12 +4,14 @@ $users = $result["data"]['users'];
 ?>
 
 <h2>Liste des utilisateurs</h2>
-    
+
+<ul>
     <?php 
 if($users) {
     foreach ($users as $user) { ?>
-            <p>
-                <a href="index.php?ctrl=security&action=viewProfile&id=<?= $user->getId() ?>"><?= $user ?></a>
-            </p>
+        <li>
+            <a href="index.php?ctrl=security&action=viewProfile&id=<?= $user->getId() ?>"><?= $user ?></a>
+        </li>
     <?php } ?>
 <?php } else { echo "Pas d'utilisateurs existants."; } ?>
+</ul>

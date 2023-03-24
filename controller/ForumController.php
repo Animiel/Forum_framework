@@ -113,7 +113,9 @@
                         Session::addFlash("success", "Vous avez ajouté un nouveau message.");
                     }
                 }
-                Session::addFlash("error", "Une erreur est survenue.");
+                else {
+                    Session::addFlash("error", "Une erreur est survenue.");
+                }
                 $this->redirectTo("forum", "listPosts", $topicId);
             }
             //on redirige vers la page

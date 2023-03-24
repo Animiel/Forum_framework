@@ -6,6 +6,6 @@ $profile = $result["data"]['profile'];
 
 <h1>Profil de <?= $profile->getPseudo() ?> (ID #<?= $profile->getId() ?>)</h1>
 
-<p>Date d'inscription : <?= $profile->getRegisterdate() ?><br>
-E-mail : <?= $profile->getEmail() ?><br>
-Role : <?= $profile->getRole() ?></p>
+<p class="profile"><strong>Date d'inscription :</strong> <?= $profile->getRegisterdate() ?><br>
+<strong>E-mail :</strong> <?= $profile->getEmail() ?><br>
+<strong>Role :</strong> <?= $profile->getRole() ?></p>
