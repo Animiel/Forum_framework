@@ -87,4 +87,15 @@
             }
             $this->redirectTo("home");
         }
+
+        public function userBan() {
+            if (isset($_GET['id'])) {
+                $userManager = new UserManager();
+
+                $user = $userManager->findOneById($_GET['id']);
+                $userManager->ban($_GET['id']);
+            }
+            Session::addFlash("success", "Vous avez banni l'utilisateur");
+            $this->redirectTo("home");
+        }
     }

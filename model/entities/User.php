@@ -10,6 +10,7 @@
         private $mot_de_passe;
         private $role;
         private $registerdate;
+        private $banned;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -104,5 +105,25 @@
                 $this->registerdate = new \DateTime($registerdate);
 
                 return $this;
+        }
+
+        public function getBanned() {
+            return $this->banned;
+        }
+
+        public function getBannedText() {
+            $ban = "";
+            if ($this->banned == 1) {
+                $ban = "Banni";
+            }
+            else {
+                $ban = "Non";
+            }
+            return $ban;
+        }
+
+        public function setBanned($banned) {
+            $this->banned = $banned;
+            return $this;
         }
     }

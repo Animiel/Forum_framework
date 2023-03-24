@@ -23,14 +23,14 @@ $topics = $result["data"]['topics'];
     </thead>
     <tbody>
         
-        <?php foreach($topics as $topic ) { ?>
+        <?php foreach($topics as $topic) { ?>
             <tr>
                 <td><a href="index.php?ctrl=forum&action=listPosts&id=<?= $topic->getId() ?>"><?=$topic->getTitle()?></a></td>
                 <td><?=$topic->getCreationdate()?></td>
                 <td><?=$topic->getUser()->getPseudo()?></td>
                 <td><?=$topic->getClosedText()?></td>
                 <td><?php if (isset($_SESSION['user'])) {
-                    if (($topic->getUser()->getId() == $_SESSION['user']->getId() || $_SESSION['user']->hasRole("ROLE_ADMIN")) && $topic->getClosedText() != "Fermé") { ?>
+                    if (($topic->getUser()->getId() == $_SESSION['user']->getId() || $_SESSION['user']->hasRole("ROLE_ADMIN")) && $topic->getClosedText() != "Fermé" && $_SESSION['user']->getBanned() != 1) { ?>
                     <a href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">Fermer le sujet</a>
                     <?php }
                 }

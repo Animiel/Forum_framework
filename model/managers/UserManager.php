@@ -54,4 +54,12 @@
                 $this->className);
         }
 
+        public function ban($id) {
+            $sql = "UPDATE user
+                    SET banned = 1
+                    WHERE id_user = :id";
+
+            return DAO::update($sql, [":id" => $id]);
+        }
+
     }
