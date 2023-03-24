@@ -8,7 +8,7 @@ $posts = $result["data"]['posts'];
 <h1><?= $topic->getTitle() ?></h1>
 <h2>Liste des messages</h2>
 
-<?php if(!$topic->getClosed() && isset($_SESSION['user']) && $_SESSION['user']->getBanned != 1) { ?>
+<?php if(!$topic->getClosed() && isset($_SESSION['user']) && $_SESSION['user']->getBanned() != 1) { ?>
     <p class="button">
         <a class="ajout" href="index.php?ctrl=forum&action=ajoutPost&id=<?= $id ?>">Ajouter un message</a>
     </p>
