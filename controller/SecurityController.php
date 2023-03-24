@@ -54,7 +54,8 @@
                 // var_dump(password_verify($mdp, $hash["mot_de_passe"]));die;
                 if ($identifiant && !$userManager->emailCheck($identifiant) == null) {
                     if ($mdp && password_verify($mdp, $hash["mot_de_passe"])) {
-                        if ($userManager->checkBanned($identifiant) == 1) {
+                        if ($userManager->checkBanned($identifiant)->getBanned() == 1) {
+                            // var_dump($userManager->checkBanned($identifiant)); die;
                             Session::setUser(null);
                             Session::addFlash("error", "Vous êtes banni, connexion impossible.");
                             $this->redirectTo("home");

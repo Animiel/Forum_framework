@@ -63,7 +63,7 @@
         }
 
         public function checkBanned($email) {
-            $sql = "SELECT banned
+            $sql = "SELECT *
                     FROM ".$this->tableName." u
                     WHERE u.email_membre = :email";
 
