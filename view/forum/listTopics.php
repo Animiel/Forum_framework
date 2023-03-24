@@ -29,8 +29,13 @@ $topics = $result["data"]['topics'];
                 <td><?=$topic->getCreationdate()?></td>
                 <td><?=$topic->getUser()->getPseudo()?></td>
                 <td><?=$topic->getClosedText()?></td>
-                <td><?php if ($topic->getUser()->getId() == $_SESSION['user']->getId() && $topic->getClosedText() != "Fermé") { ?>
+                <td><?php if (isset($_SESSION['user'])) {
+                    if (($topic->getUser()->getId() == $_SESSION['user']->getId() || $_SESSION['user']->hasRole("ROLE_ADMIN")) && $topic->getClosedText() != "Fermé") { ?>
                     <a href="index.php?ctrl=forum&action=closeTopic&id=<?= $topic->getId() ?>">Fermer le sujet</a>
+                    <?php }
+                }
+                else { ?>
+                <a></a>
                 <?php } ?></td>
             </tr>
         <?php } ?>
